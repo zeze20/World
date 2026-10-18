@@ -1,0 +1,22 @@
+{
+  "name": "aetherglobe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AetherGlobe – Independent 3D global exploration platform (Google Earth-like, license-compliant)",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @aetherglobe/web dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@9.12.0"
+}

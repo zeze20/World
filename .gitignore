@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs & coverage
+logs/
+*.log
+coverage/
+.nyc_output/
+
+# Cesium / assets cache
+.cesium/
+*.terrain
+*.tile
+
+# Test
+playwright-report/
+test-results/
+
+# OS
+Thumbs.db
+node_modules/
+apps/web/node_modules/
