@@ -100,10 +100,11 @@ export function SearchBar({ viewer }: Props) {
   const flyToResult = (r: SearchResult) => {
     viewer?.flyTo({ latitude: r.lat, longitude: r.lon, height: 2500 });
     setResults([]);
+    setQuery("");
   };
 
   return (
-    <div className="panel" style={{ padding: 10, minWidth: 280, maxWidth: 360 }}>
+    <div className="panel search-panel">
       <label className="sr-only" htmlFor="search-input">
         {t("search")}
       </label>
@@ -116,6 +117,8 @@ export function SearchBar({ viewer }: Props) {
           onKeyDown={(e) => e.key === "Enter" && doSearch()}
           placeholder={t("searchPlaceholder")}
           autoComplete="off"
+          enterKeyHint="search"
+          inputMode="search"
           data-testid="search-input"
         />
         <button
@@ -140,8 +143,9 @@ export function SearchBar({ viewer }: Props) {
             listStyle: "none",
             margin: "8px 0 0",
             padding: 0,
-            maxHeight: 200,
+            maxHeight: "30vh",
             overflow: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
           data-testid="search-results"
         >
@@ -155,7 +159,8 @@ export function SearchBar({ viewer }: Props) {
                   justifyContent: "flex-start",
                   textAlign: "left",
                   marginTop: 4,
-                  fontSize: 13,
+                  fontSize: 14,
+                  minHeight: 48,
                 }}
                 onClick={() => flyToResult(r)}
               >

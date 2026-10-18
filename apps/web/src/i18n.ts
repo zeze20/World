@@ -23,6 +23,8 @@ const resources = {
       help: "Yardım",
       helpNav:
         "Fare: sürükle = pan, sağ tık = eğ, tekerlek = zoom. Klavye: ok tuşları, +/- zoom, R sıfırla. Ölçüm: iki nokta tıkla.",
+      helpTouch:
+        "Dokunmatik: tek parmak sürükle = pan, iki parmak = zoom/döndür. Ölçüm: iki nokta dokun.",
       offline: "Bağlantı yok – önbellek ve yerel veriler kullanılabilir",
       attribution: "Veri: OpenStreetMap · Natural Earth · AetherGlobe bağımsız bir projedir",
       noResults: "Sonuç bulunamadı",
@@ -66,6 +68,8 @@ const resources = {
       help: "Help",
       helpNav:
         "Mouse: drag = pan, right-drag = tilt, wheel = zoom. Keyboard: arrows, +/- zoom, R reset. Measure: click two points.",
+      helpTouch:
+        "Touch: one finger drag = pan, two fingers = zoom/rotate. Measure: tap two points.",
       offline: "Offline – cache and local data available",
       attribution: "Data: OpenStreetMap · Natural Earth · AetherGlobe is an independent project",
       noResults: "No results found",

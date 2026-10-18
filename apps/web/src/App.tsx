@@ -32,31 +32,11 @@ export function App() {
   }, [setOnline]);
 
   return (
-    <div style={{ width: "100%", height: "100%", position: "relative" }} data-testid="app-root">
+    <div className="app-shell" data-testid="app-root">
       <OfflineBanner />
       <ErrorBanner />
-      <header
-        style={{
-          position: "absolute",
-          top: 12,
-          left: 12,
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "column",
-          gap: 8,
-        }}
-      >
-        <div
-          className="panel"
-          style={{
-            padding: "8px 14px",
-            fontWeight: 700,
-            letterSpacing: 0.3,
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-          }}
-        >
+      <header className="app-header">
+        <div className="panel app-brand">
           <span aria-hidden>🌍</span>
           {t("appName")}
         </div>

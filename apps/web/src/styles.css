@@ -1,6 +1,6 @@
 :root {
   --bg: #0a0e17;
-  --panel: rgba(12, 18, 32, 0.85);
+  --panel: rgba(12, 18, 32, 0.9);
   --border: rgba(255, 255, 255, 0.12);
   --text: #e8eef7;
   --muted: #94a3b8;
@@ -8,6 +8,14 @@
   --danger: #f87171;
   --radius: 10px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --touch-min: 44px;
+  --ui-gap: 8px;
+  --header-offset: calc(12px + var(--safe-top));
+  --bottom-offset: calc(12px + var(--safe-bottom));
 }
 
 * {
@@ -16,17 +24,20 @@
 
 body {
   color: var(--text);
+  overscroll-behavior: none;
 }
 
 button,
 input,
 select {
   font: inherit;
+  font-size: 16px; /* prevents iOS zoom on focus */
 }
 
 .panel {
   background: var(--panel);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -35,19 +46,29 @@ select {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 8px 12px;
-  border-radius: 8px;
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  padding: 10px 14px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn:active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .btn:focus-visible {
@@ -56,21 +77,33 @@ select {
 }
 
 .btn-primary {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.5);
 }
 
-.btn-primary:hover {
-  background: rgba(56, 189, 248, 0.3);
+.btn-primary:hover,
+.btn-primary:active {
+  background: rgba(56, 189, 248, 0.35);
+}
+
+.btn-icon {
+  padding: 10px;
+  font-size: 1.15rem;
+}
+
+.btn .btn-label {
+  display: inline;
 }
 
 .input {
   width: 100%;
-  padding: 8px 12px;
-  border-radius: 8px;
+  min-height: var(--touch-min);
+  padding: 10px 14px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   color: var(--text);
+  font-size: 16px;
 }
 
 .input:focus {
@@ -88,4 +121,216 @@ select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Layout shells */
+.app-shell {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header {
+  position: absolute;
+  top: var(--header-offset);
+  left: calc(12px + var(--safe-left));
+  right: calc(12px + var(--safe-right));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-gap);
+  pointer-events: none;
+  max-width: 100%;
+}
+
+.app-header > * {
+  pointer-events: auto;
+}
+
+.app-brand {
+  padding: 8px 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+.toolbar-dock {
+  position: absolute;
+  top: var(--header-offset);
+  right: calc(12px + var(--safe-right));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-gap);
+  align-items: flex-end;
+  max-width: min(320px, calc(100vw - 24px));
+}
+
+.toolbar-actions {
+  padding: 6px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.coords-bar {
+  position: absolute;
+  bottom: var(--bottom-offset);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  z-index: 10;
+  max-width: calc(100vw - 24px - var(--safe-left) - var(--safe-right));
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attribution {
+  position: absolute;
+  bottom: calc(4px + var(--safe-bottom));
+  right: calc(8px + var(--safe-right));
+  font-size: 10px;
+  color: var(--muted);
+  z-index: 9;
+  max-width: 45vw;
+  text-align: right;
+  line-height: 1.3;
+  pointer-events: none;
+}
+
+.search-panel {
+  padding: 10px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.side-panel {
+  padding: 10px;
+  max-width: min(300px, calc(100vw - 24px));
+  max-height: min(40vh, 280px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile bottom action bar */
+.mobile-bar {
+  display: none;
+  position: absolute;
+  bottom: var(--bottom-offset);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  padding: 6px 8px;
+  gap: 4px;
+  flex-wrap: nowrap;
+  max-width: calc(100vw - 16px);
+}
+
+.mobile-bar .btn {
+  flex: 1 1 auto;
+  min-width: 48px;
+  padding: 10px 8px;
+  font-size: 0.85rem;
+}
+
+/* Mobile / narrow screens */
+@media (max-width: 768px) {
+  :root {
+    --touch-min: 48px;
+  }
+
+  .app-header {
+    right: calc(12px + var(--safe-right));
+  }
+
+  .search-panel {
+    max-width: none;
+  }
+
+  /* Hide long labels on small screens – icons remain */
+  .toolbar-dock .btn-label {
+    display: none;
+  }
+
+  .toolbar-dock {
+    top: auto;
+    bottom: calc(64px + var(--safe-bottom));
+    right: calc(8px + var(--safe-right));
+    max-width: min(280px, calc(100vw - 16px));
+  }
+
+  .toolbar-actions {
+    display: none; /* replaced by mobile-bar */
+  }
+
+  .mobile-bar {
+    display: flex;
+  }
+
+  .coords-bar {
+    bottom: calc(72px + var(--safe-bottom));
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .attribution {
+    bottom: calc(56px + var(--safe-bottom));
+    font-size: 9px;
+    max-width: 40vw;
+  }
+
+  .app-brand {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+  }
+
+  .side-panel {
+    max-height: min(35vh, 240px);
+    font-size: 13px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .mobile-bar .btn-label-short {
+    display: none;
+  }
+}
+
+/* Landscape phone */
+@media (max-height: 480px) and (orientation: landscape) {
+  .coords-bar {
+    bottom: calc(8px + var(--safe-bottom));
+    left: auto;
+    right: calc(8px + var(--safe-right));
+    transform: none;
+  }
+
+  .mobile-bar {
+    left: auto;
+    right: calc(8px + var(--safe-right));
+    transform: none;
+    flex-direction: column;
+  }
+
+  .toolbar-dock {
+    bottom: calc(8px + var(--safe-bottom));
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
 }

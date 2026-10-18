@@ -2,8 +2,16 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+    />
     <meta name="description" content="AetherGlobe – Bağımsız 3B küresel keşif platformu" />
+    <meta name="theme-color" content="#0a0e17" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
     <title>AetherGlobe</title>
     <style>
       html, body, #root {
@@ -11,9 +19,12 @@
         padding: 0;
         width: 100%;
         height: 100%;
+        height: 100dvh;
         overflow: hidden;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
         background: #0a0e17;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
       }
     </style>
   </head>

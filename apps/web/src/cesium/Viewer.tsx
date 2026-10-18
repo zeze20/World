@@ -83,6 +83,16 @@ export function GlobeViewer({ onReady }: Props) {
     }
 
     viewer.scene.globe.enableLighting = false;
+    // Touch-friendly camera inertia
+    {
+      const c = viewer.scene.screenSpaceCameraController;
+      c.inertiaSpin = 0.85;
+      c.inertiaTranslate = 0.85;
+      c.inertiaZoom = 0.75;
+      c.minimumZoomDistance = 80;
+      c.maximumZoomDistance = 45_000_000;
+    }
+
     viewer.scene.fog.enabled = true;
     viewer.scene.skyAtmosphere.show = true;
     // Controlled memory: request render mode optional later

@@ -27,7 +27,7 @@ export function LayerPanel({ viewer }: Props) {
   };
 
   return (
-    <div className="panel" style={{ padding: 10, minWidth: 220 }}>
+    <div className="panel side-panel" style={{ minWidth: 200 }}>
       <div style={{ fontWeight: 600, marginBottom: 8 }}>{t("layers")}</div>
       <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
         {LAYER_REGISTRY.map((layer) => (
