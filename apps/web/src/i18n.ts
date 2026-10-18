@@ -26,7 +26,7 @@ const resources = {
       helpTouch:
         "Dokunmatik: tek parmak sürükle = pan, iki parmak = zoom/döndür. Ölçüm: iki nokta dokun.",
       offline: "Bağlantı yok – önbellek ve yerel veriler kullanılabilir",
-      attribution: "Veri: OpenStreetMap · Natural Earth · AetherGlobe bağımsız bir projedir",
+      attribution: "Veri: OpenStreetMap · CARTO · Natural Earth · AetherGlobe bağımsız bir projedir",
       noResults: "Sonuç bulunamadı",
       bookmarkSaved: "Yer işareti kaydedildi",
       distance: "Mesafe",
@@ -71,7 +71,7 @@ const resources = {
       helpTouch:
         "Touch: one finger drag = pan, two fingers = zoom/rotate. Measure: tap two points.",
       offline: "Offline – cache and local data available",
-      attribution: "Data: OpenStreetMap · Natural Earth · AetherGlobe is an independent project",
+      attribution: "Data: OpenStreetMap · CARTO · Natural Earth · AetherGlobe is an independent project",
       noResults: "No results found",
       bookmarkSaved: "Bookmark saved",
       distance: "Distance",

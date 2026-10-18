@@ -9,7 +9,7 @@ import {
   Color,
   HeightReference,
   Entity,
-  OpenStreetMapImageryProvider,
+  UrlTemplateImageryProvider,
   EllipsoidTerrainProvider,
   GeoJsonDataSource,
   defined,
@@ -68,21 +68,17 @@ export function GlobeViewer({ onReady }: Props) {
       infoBox: false,
       selectionIndicator: false,
       terrainProvider: new EllipsoidTerrainProvider(),
+      baseLayer: false,
     });
 
-    // OSM imagery (attribution required; respect tile usage policy)
-    try {
-      viewer.imageryLayers.removeAll();
-      const osm = new OpenStreetMapImageryProvider({
-        url: "https://tile.openstreetmap.org/",
-      });
-      viewer.imageryLayers.addImageryProvider(osm);
-    } catch (e) {
-      console.warn("OSM imagery failed", e);
-      setErrorMessage("Imagery layer could not be loaded");
-    }
-
+    // Avoid hard crash on bad tiles (common on mobile)
+    viewer.scene.rethrowRenderErrors = false;
+    viewer.scene.globe.baseColor = Color.fromCssColorString("#1a4a6e");
     viewer.scene.globe.enableLighting = false;
+    viewer.scene.fog.enabled = true;
+    viewer.scene.skyAtmosphere.show = true;
+    viewer.scene.requestRenderMode = false;
+
     // Touch-friendly camera inertia
     {
       const c = viewer.scene.screenSpaceCameraController;
@@ -93,10 +89,23 @@ export function GlobeViewer({ onReady }: Props) {
       c.maximumZoomDistance = 45_000_000;
     }
 
-    viewer.scene.fog.enabled = true;
-    viewer.scene.skyAtmosphere.show = true;
-    // Controlled memory: request render mode optional later
-    viewer.scene.requestRenderMode = false;
+    // Mobile-safe tiles (CARTO; OSM data — attribution in UI)
+    try {
+      viewer.imageryLayers.removeAll();
+      const tiles = new UrlTemplateImageryProvider({
+        url: "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+        credit: "© OpenStreetMap © CARTO",
+        maximumLevel: 18,
+      });
+      viewer.imageryLayers.addImageryProvider(tiles);
+    } catch (e) {
+      console.warn("Imagery failed", e);
+      setErrorMessage("Harita görüntüsü yüklenemedi; küre kullanılabilir");
+    }
+
+    viewer.scene.renderError.addEventListener(() => {
+      console.warn("Cesium render error ignored");
+    });
 
     viewer.camera.setView({
       destination: Cartesian3.fromDegrees(28.9784, 41.0082, 12_000_000),
