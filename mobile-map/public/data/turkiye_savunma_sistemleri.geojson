@@ -1,0 +1,1690 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "kaynak_rapor": "World-2.html",
+    "olusturma_tarihi": "2026-10-18",
+    "bilgi_kesim_tarihi": "2026-10-18",
+    "sistem_sayisi": 45,
+    "feature_sayisi": 45,
+    "koordinat_sistemi": "WGS84 (EPSG:4326)",
+    "guven_olcegi": "A-E (rapor Bölüm 11)",
+    "kapsam_notu": "Yalnızca kamuya açık rapor verisi. Tesis koordinatları üretici merkez/yerleşke çıkarımıdır; rapordan doğrulanmayan konumlar konum_turu=varsayilan veya ilgili etiket + konum_aciklama ile işaretlenmiştir.",
+    "kategoriler": [
+      "Hava Platformları",
+      "İnsansız Hava Sistemleri",
+      "Kara Sistemleri",
+      "Deniz Sistemleri",
+      "Hava ve Füze Savunma",
+      "Füze ve Mühimmat",
+      "Radar/Sensör/EH",
+      "K2HM",
+      "Uzay ve Uydu",
+      "Tahrik ve Motor"
+    ],
+    "duzeltmeler": [
+      "koordinat 2 ondalık",
+      "konum_hassasiyeti tesis→ilce",
+      "Baykar 41.15,28.65",
+      "mobil_ikon, kume_id, oncelik_mobil eklendi"
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.63,
+          40.1
+        ]
+      },
+      "properties": {
+        "id": "SYS-001",
+        "isim": "KAAN",
+        "varyant": "P1 (prototip)",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Muharip Uçak",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "5. nesil muharip uçak",
+        "son_gelisme": "P1 yer testlerine başladı; ilk uçuş 2026 sonu hedefi",
+        "guncelleme_tarihi": "2026-10-02",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan yerleşkesi (üretici merkezi çıkarımı; rapordan tesis koordinatı doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[0]",
+          "[24]",
+          "[33]"
+        ],
+        "yerlilik_notu": "Motor dışa bağımlı; gövde/aviyonik yerlilik beyanı var, bağımsız doğrulama yok",
+        "ihracat_notu": null,
+        "notlar": "İlk uçuş tarihi kesinleşmiş değil; motor tipi ve performans kamuya açık değil",
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.63,
+          40.09
+        ]
+      },
+      "properties": {
+        "id": "SYS-002",
+        "isim": "HÜRJET",
+        "varyant": "Jet eğitim uçağı",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Eğitim ve Hafif Taarruz",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 3,
+        "durum_etiketi": "Teslimat Sürecinde",
+        "gorev": "Jet eğitim ve hafif taarruz",
+        "son_gelisme": "Hava Kuvvetleri'ne teslim edilecek ilk uçağın ilk uçuşu (30 Ağu 2026)",
+        "guncelleme_tarihi": "2026-08-30",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[8]"
+        ],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "MURAD AESA ile test uçuşu da raporlanmıştır (Eyl 2026)",
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.64,
+          40.1
+        ]
+      },
+      "properties": {
+        "id": "SYS-003",
+        "isim": "HÜRKUŞ-II",
+        "varyant": "Temel eğitim uçağı",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Eğitim",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 3,
+        "durum_etiketi": "Teslimat Sürecinde",
+        "gorev": "Temel eğitim",
+        "son_gelisme": "İlk 2 uçak envantere girdi (28 Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-28",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[41]"
+        ],
+        "yerlilik_notu": null,
+        "ihracat_notu": "HÜRKUŞ ihracatı rapor eğilimlerinde geçiyor",
+        "notlar": "Yıllık teslimat hedefi kaynaklarda çelişkili (12 vs 22); notlar bölümü",
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.63,
+          40.09
+        ]
+      },
+      "properties": {
+        "id": "SYS-004",
+        "isim": "GÖKBEY",
+        "varyant": "T625",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Genel Maksat Helikopteri",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 3,
+        "durum_etiketi": "Teslimat Sürecinde",
+        "gorev": "Genel maksat helikopteri",
+        "son_gelisme": "Kara Kuvvetleri'ne ilk teslimat (Nis 2026); Emniyet'e ilk teslimat (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-02",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[9]",
+          "[29]"
+        ],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.63,
+          40.09
+        ]
+      },
+      "properties": {
+        "id": "SYS-005",
+        "isim": "ATAK-2 / T925",
+        "varyant": "Ağır taarruz / genel maksat",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Helikopter",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 8,
+        "durum_etiketi": "Ertelenmiş/Öncelik Değişmiş",
+        "gorev": "Ağır taarruz helikopteri",
+        "son_gelisme": "Proje iptal edilmedi; T925 genel maksat helikopterine öncelik verildi (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "C",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Öncelik değişikliği; ağır taarruz programı ertelenmiş durumda",
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "orta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.65,
+          40.1
+        ]
+      },
+      "properties": {
+        "id": "SYS-006",
+        "isim": "F-16 ÖZGÜR",
+        "varyant": "Block 30 modernizasyonu",
+        "kategori": "Hava Platformları",
+        "alt_kategori": "Modernize Muharip Uçak",
+        "uretici": "TUSAŞ/ASELSAN/HAVELSAN",
+        "durum_kodu": 3,
+        "durum_etiketi": "Teslimat Sürecinde",
+        "gorev": "Modernize muharip uçak",
+        "son_gelisme": "Son F-16 Block 30'un 2026 sonunda teslim edilmesi hedefi",
+        "guncelleme_tarihi": "2026-01-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ modernizasyon hattı (Kahramankazan çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "ÖZGÜR aviyonik/yazılım yerlileştirme odaklı",
+        "ihracat_notu": null,
+        "notlar": "Kesin teslimat adedi raporda net değil",
+        "mobil_ikon": "plane",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.65,
+          41.15
+        ]
+      },
+      "properties": {
+        "id": "SYS-007",
+        "isim": "Bayraktar TB3",
+        "varyant": "SİHA",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "Silahlı İHA",
+        "uretici": "Baykar",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Gemiden kalkan silahlı İHA",
+        "son_gelisme": "Denizkurdu-2026'da sonoboy atış testi (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-22",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Baykar Arnavutköy/İstanbul bölgesi (yaklaşık; rapordan tesis koordinatı doğrulanmadı — önceki koordinat düzeltildi)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[1]"
+        ],
+        "yerlilik_notu": "Yüksek yerlilik beyanı (üretici)",
+        "ihracat_notu": "NATO tatbikat performansı rapor eğilimlerinde",
+        "notlar": "TCG Anadolu ile milli yazılım entegrasyonu ayrıca SYS-039",
+        "mobil_ikon": "drone",
+        "kume_id": "baykar-arnavutkoy",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.65,
+          41.15
+        ]
+      },
+      "properties": {
+        "id": "SYS-008",
+        "isim": "Bayraktar AKINCI",
+        "varyant": "TİHA",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "Ağır Taarruz İHA",
+        "uretici": "Baykar",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Ağır taarruz İHA",
+        "son_gelisme": "110+ teslimat; yıl sonuna kadar 120 hedefi (Oca 2026)",
+        "guncelleme_tarihi": "2026-01-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Baykar Arnavutköy/İstanbul bölgesi (yaklaşık; rapordan tesis koordinatı doğrulanmadı — önceki koordinat düzeltildi)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": "İhracat odaklı ürün grubu",
+        "notlar": "Yıl sonu 120 hedefi plan; gerçekleşme Ekim 2026 itibarıyla kesinleşmiş değil",
+        "mobil_ikon": "drone",
+        "kume_id": "baykar-arnavutkoy",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.65,
+          41.15
+        ]
+      },
+      "properties": {
+        "id": "SYS-009",
+        "isim": "Bayraktar KIZILELMA",
+        "varyant": "S2 (seri prototip)",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "İnsansız Savaş Uçağı",
+        "uretici": "Baykar",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "İnsansız savaş uçağı",
+        "son_gelisme": "Dahili silah yuvasından ilk atış testleri (Tem 2026)",
+        "guncelleme_tarihi": "2026-07-30",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Baykar Arnavutköy/İstanbul bölgesi (yaklaşık; rapordan tesis koordinatı doğrulanmadı — önceki koordinat düzeltildi)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[37]"
+        ],
+        "yerlilik_notu": "Motor: Ukrayna menşeli AI-322F kullanıldığına dair yayınlar var; TF6000 test aşamasında",
+        "ihracat_notu": null,
+        "notlar": "TSK envanterine 2026 giriş iddiası Ekim 2026 itibarıyla kesinleşmiş teslimat açıklaması yok",
+        "mobil_ikon": "drone",
+        "kume_id": "baykar-arnavutkoy",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.65,
+          40.11
+        ]
+      },
+      "properties": {
+        "id": "SYS-010",
+        "isim": "ANKA-3",
+        "varyant": "Prototip",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "Düşük Görünürlüklü Taarruz İHA",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "Düşük görünürlüklü taarruz İHA",
+        "son_gelisme": "İkinci prototip test uçuşları; Süper Şimşek taşıma (Ağu 2026)",
+        "guncelleme_tarihi": "2026-08-14",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[36]"
+        ],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "ANKA ile karıştırılmamalı; jet İHA, düşük görünürlük odaklı",
+        "mobil_ikon": "drone",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.66,
+          40.11
+        ]
+      },
+      "properties": {
+        "id": "SYS-011",
+        "isim": "AKSUNGUR",
+        "varyant": "İHA",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "Uzun Havada Kalış",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Uzun havada kalışlı gözetleme/taarruz",
+        "son_gelisme": "TOLUN-P ilk atış testi (Eki 2026)",
+        "guncelleme_tarihi": "2026-10-15",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "TEI-PD170 motor anlaşması raporlanmış",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "drone",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.66,
+          40.12
+        ]
+      },
+      "properties": {
+        "id": "SYS-012",
+        "isim": "ANKA",
+        "varyant": "İHA",
+        "kategori": "İnsansız Hava Sistemleri",
+        "alt_kategori": "Gözetleme/Keşif",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Gözetleme/keşif",
+        "son_gelisme": "Güney Asya'ya özel görev siparişi (Eki 2026)",
+        "guncelleme_tarihi": "2026-10-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "C",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": "Güney Asya özel görev siparişi",
+        "notlar": "ANKA-3 ile karıştırılmamalı",
+        "mobil_ikon": "drone",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "orta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.43,
+          40.8
+        ]
+      },
+      "properties": {
+        "id": "SYS-013",
+        "isim": "Altay",
+        "varyant": "T1",
+        "kategori": "Kara Sistemleri",
+        "alt_kategori": "Ana Muharebe Tankı",
+        "uretici": "BMC",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Teslimat",
+        "gorev": "Ana muharebe tankı",
+        "son_gelisme": "2026'da en az 10 adet teslimat planı (Şub 2026)",
+        "guncelleme_tarihi": "2026-02-05",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "BMC üretim bölgesi (Gebze/Kocaeli çıkarımı; rapordan tesis doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[2]"
+        ],
+        "yerlilik_notu": "Yerli güç grubu 2026 sonundan itibaren planlanıyor",
+        "ihracat_notu": null,
+        "notlar": "10 adet teslimatın gerçekleşip gerçekleşmediği Ekim 2026 itibarıyla kesin değil; ağırlık/zırh/motor gücü kamuya açık değil",
+        "mobil_ikon": "tank",
+        "kume_id": "bmc-gebze",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.39,
+          40.72
+        ]
+      },
+      "properties": {
+        "id": "SYS-014",
+        "isim": "TULPAR",
+        "varyant": "Orta sınıf tank / ZMA",
+        "kategori": "Kara Sistemleri",
+        "alt_kategori": "Modüler Paletli Zırhlı",
+        "uretici": "Otokar",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "Modüler paletli zırhlı araç",
+        "son_gelisme": "HITFACT MkII 120 mm ile atış testleri (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-18",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Otokar Sakarya/Arifiye (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "tank",
+        "kume_id": "otokar-sakarya",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.43,
+          40.8
+        ]
+      },
+      "properties": {
+        "id": "SYS-015",
+        "isim": "FIRTINA-2",
+        "varyant": "155 mm obüs",
+        "kategori": "Kara Sistemleri",
+        "alt_kategori": "Kendinden Yürür Obüs",
+        "uretici": "BMC",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Teslimat",
+        "gorev": "Kendinden yürür obüs",
+        "son_gelisme": "Envantere alındı (Tem 2026)",
+        "guncelleme_tarihi": "2026-07-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "BMC üretim bölgesi (Gebze/Kocaeli çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "tank",
+        "kume_id": "bmc-gebze",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.78,
+          39.91
+        ]
+      },
+      "properties": {
+        "id": "SYS-016",
+        "isim": "BARKAN-3",
+        "varyant": "İKA",
+        "kategori": "Kara Sistemleri",
+        "alt_kategori": "Otonom Kara Aracı",
+        "uretici": "HAVELSAN",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "Otonom kara aracı",
+        "son_gelisme": "SAHA 2026'da tanıtıldı (May 2026)",
+        "guncelleme_tarihi": "2026-05-06",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "HAVELSAN Ankara (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Tanıtım aşaması; envanter girişi raporlanmamış",
+        "mobil_ikon": "tank",
+        "kume_id": "havelsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.85,
+          39.93
+        ]
+      },
+      "properties": {
+        "id": "SYS-017",
+        "isim": "HANÇER",
+        "varyant": "İKA",
+        "kategori": "Kara Sistemleri",
+        "alt_kategori": "Çok Amaçlı İKA",
+        "uretici": "Elektroland Defence",
+        "durum_kodu": 2,
+        "durum_etiketi": "Sözleşme ve Tedarik",
+        "gorev": "Çok amaçlı İKA",
+        "son_gelisme": "Tedarik sözleşmesi imzalandı (May 2026)",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "C",
+        "konum_turu": "varsayilan",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "Ankara varsayılan (üretici merkezi rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Tek kaynak/sözleşme düzeyinde güven",
+        "mobil_ikon": "tank",
+        "kume_id": null,
+        "oncelik_mobil": "orta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.3,
+          40.82
+        ]
+      },
+      "properties": {
+        "id": "SYS-018",
+        "isim": "TCG Anadolu",
+        "varyant": "L400",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Amfibi Hücum Gemisi / İHA Gemisi",
+        "uretici": "Sedef Tersanesi",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Amfibi hücum / İHA gemisi",
+        "son_gelisme": "TB3 ile milli yazılım entegrasyonu (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "tersane",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Sedef Tersanesi, Tuzla/İstanbul (tersane konumu çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Milli yazılım entegrasyonu vurgusu",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "ship",
+        "kume_id": "sedef-tuzla",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.29,
+          40.84
+        ]
+      },
+      "properties": {
+        "id": "SYS-019",
+        "isim": "İstanbul Sınıfı Fırkateyn",
+        "varyant": "İstif sınıfı",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Hava Savunma Fırkateyni",
+        "uretici": "STM",
+        "durum_kodu": 3,
+        "durum_etiketi": "Teslimat Sürecinde",
+        "gorev": "Hava savunma fırkateyni",
+        "son_gelisme": "5. gemi denize indirildi (Şub 2026); 7 gemi inşa halinde",
+        "guncelleme_tarihi": "2026-02-04",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "tersane",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Anadolu Tersanesi / İstanbul tersane bölgesi (rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": "Malezya korvet projesi rapor eğilimlerinde",
+        "notlar": null,
+        "mobil_ikon": "ship",
+        "kume_id": "anadolu-tersane",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.86,
+          39.93
+        ]
+      },
+      "properties": {
+        "id": "SYS-020",
+        "isim": "MİLDEN",
+        "varyant": "Milli denizaltı",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Havadan Bağımsız Denizaltı",
+        "uretici": "ASFAT/HAVELSAN",
+        "durum_kodu": 6,
+        "durum_etiketi": "Geliştirme",
+        "gorev": "Havadan bağımsız denizaltı",
+        "son_gelisme": "Yerli çelik üretimi; ADVENT MÜREN entegrasyon hedefi (Ağu 2026)",
+        "guncelleme_tarihi": "2026-08-21",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "ASFAT/Ankara program yönetimi (üretici çıkarımı; inşa yeri rapordan net değil)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli çelik vurgusu",
+        "ihracat_notu": null,
+        "notlar": "AIP ve sensör suit ayrıntıları kamuya açık değil; denize indirme henüz yok",
+        "mobil_ikon": "ship",
+        "kume_id": "asfat-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.29,
+          40.85
+        ]
+      },
+      "properties": {
+        "id": "SYS-021",
+        "isim": "TF-2000",
+        "varyant": "Hava savunma muhribi",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Bölge Hava Savunma Muhribi",
+        "uretici": "ASFAT/STM",
+        "durum_kodu": 6,
+        "durum_etiketi": "Geliştirme",
+        "gorev": "Bölge hava savunma muhribi",
+        "son_gelisme": "İnşa halinde; 2030 teslimat hedefi",
+        "guncelleme_tarihi": "2026-01-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "tersane",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "İstanbul tersane bölgesi varsayımı (inşa yeri rapordan net değil)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "ÇELİKKUBBE + lazer silahı entegrasyon planı",
+        "ihracat_notu": null,
+        "notlar": "Silah yükü ve radar konfigürasyonu kamuya açık değil",
+        "mobil_ikon": "ship",
+        "kume_id": "anadolu-tersane",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.48,
+          40.7
+        ]
+      },
+      "properties": {
+        "id": "SYS-022",
+        "isim": "MARLİN",
+        "varyant": "SİDA / İDA",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Silahlı İnsansız Deniz Aracı",
+        "uretici": "SEFİNE/ASELSAN",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Silahlı insansız deniz aracı",
+        "son_gelisme": "Mayın dökme kabiliyeti kazandı (Ağu 2026)",
+        "guncelleme_tarihi": "2026-08-17",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "tersane",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Sefine Tersanesi, Yalova/Altınova (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "ship",
+        "kume_id": "sefine-yalova",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.85,
+          39.92
+        ]
+      },
+      "properties": {
+        "id": "SYS-023",
+        "isim": "STM NETA / YAKTU / TENGİZ",
+        "varyant": "İnsansız deniz sistemleri",
+        "kategori": "Deniz Sistemleri",
+        "alt_kategori": "Otonom Sualtı/Üstü",
+        "uretici": "STM",
+        "durum_kodu": 2,
+        "durum_etiketi": "Sözleşme ve Test",
+        "gorev": "Otonom sualtı/üstü araçlar",
+        "son_gelisme": "NETA için ilk sözleşmeler; YAKTU üretimde (Eki 2026)",
+        "guncelleme_tarihi": "2026-10-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "il",
+        "konum_aciklama": "STM Ankara (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Üç platform aynı feature altında gruplandı; ayrı envanter kartı yok",
+        "mobil_ikon": "ship",
+        "kume_id": "stm-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.76,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-024",
+        "isim": "SİPER",
+        "varyant": "Uzun menzilli",
+        "kategori": "Hava ve Füze Savunma",
+        "alt_kategori": "Bölge Hava Savunma",
+        "uretici": "ASELSAN/Roketsan",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde ve Test",
+        "gorev": "Bölge hava savunma",
+        "son_gelisme": "Süper Şimşek hedefini imha (Haz 2026); yeni uzun menzilli versiyon geliştirme",
+        "guncelleme_tarihi": "2026-06-12",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici merkezi; konuşlanma sahaları rapordan net değil)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[26]",
+          "[4]"
+        ],
+        "yerlilik_notu": "Yerli hava savunma katmanı",
+        "ihracat_notu": null,
+        "notlar": "Menzil ~200 km iddiası bağımsız doğrulanmamış; SİPER-2 menzil çelişkisi rapor Bölüm 8",
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.77,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-025",
+        "isim": "HİSAR-A",
+        "varyant": "Alçak irtifa",
+        "kategori": "Hava ve Füze Savunma",
+        "alt_kategori": "Alçak İrtifa Hava Savunma",
+        "uretici": "ASELSAN/Roketsan",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde ve Seri Üretim",
+        "gorev": "Alçak irtifa hava savunma",
+        "son_gelisme": "İlave seri üretim sözleşmesi (Tem 2026)",
+        "guncelleme_tarihi": "2026-07-10",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN/Roketsan Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "HİSAR-O ile karıştırılmamalı",
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.77,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-026",
+        "isim": "HİSAR-O",
+        "varyant": "Orta irtifa",
+        "kategori": "Hava ve Füze Savunma",
+        "alt_kategori": "Orta İrtifa Hava Savunma",
+        "uretici": "ASELSAN/Roketsan",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde ve Seri Üretim",
+        "gorev": "Orta irtifa hava savunma",
+        "son_gelisme": "İlave seri üretim sözleşmesi (Tem 2026)",
+        "guncelleme_tarihi": "2026-07-10",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN/Roketsan Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "HİSAR-A ile karıştırılmamalı",
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.76,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-027",
+        "isim": "ÇELİKKUBBE",
+        "varyant": "Entegre mimari",
+        "kategori": "Hava ve Füze Savunma",
+        "alt_kategori": "Katmanlı Hava Savunma Ağı",
+        "uretici": "ASELSAN",
+        "durum_kodu": 4,
+        "durum_etiketi": "Entegrasyon ve Teslimat",
+        "gorev": "Katmanlı hava savunma ağı",
+        "son_gelisme": "2026'da 100+ ürün teslimat hedefi; KORAL AD, ILGAR 3-LT, GÖKBERK 10, EJDERHA 210 entegrasyonu",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (mimari program; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[34]"
+        ],
+        "yerlilik_notu": "Yerli katmanlı hava savunma entegrasyonu",
+        "ihracat_notu": null,
+        "notlar": "Sistem ailesi; tek platform değil",
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.77,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-028",
+        "isim": "KORAL AD",
+        "varyant": "Elektronik harp",
+        "kategori": "Hava ve Füze Savunma",
+        "alt_kategori": "Hava Savunma EH",
+        "uretici": "ASELSAN",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "Hava savunma elektronik harp",
+        "son_gelisme": "ÇELİKKUBBE kapsamında tanıtıldı (May 2026)",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[34]"
+        ],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "KORAL (kara EH) ile karıştırılmamalı",
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.78,
+          39.89
+        ]
+      },
+      "properties": {
+        "id": "SYS-029",
+        "isim": "SOM-J",
+        "varyant": "Seyir füzesi",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Hava-Kara Seyir Füzesi",
+        "uretici": "TÜBİTAK SAGE",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Test",
+        "gorev": "Hava-kara seyir füzesi",
+        "son_gelisme": "Canlı harp başlığıyla tam isabet (Mar 2026)",
+        "guncelleme_tarihi": "2026-03-21",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TÜBİTAK SAGE Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli seyir füzesi",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "missile",
+        "kume_id": "sage-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.23,
+          39.92
+        ]
+      },
+      "properties": {
+        "id": "SYS-030",
+        "isim": "ATMACA",
+        "varyant": "Gemisavar füzesi",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Gemisavar / Kara Hedef",
+        "uretici": "Roketsan",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Teslimat",
+        "gorev": "Gemisavar ve kara hedef",
+        "son_gelisme": "100 km'den tam isabet (Eyl 2026); kara hedefi testi (Mar 2026)",
+        "guncelleme_tarihi": "2026-09-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Roketsan Elmadağ (üretici tesisi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[47]"
+        ],
+        "yerlilik_notu": "Yerli gemisavar",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "missile",
+        "kume_id": "roketsan-elmadag",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.23,
+          39.92
+        ]
+      },
+      "properties": {
+        "id": "SYS-031",
+        "isim": "AKYA",
+        "varyant": "Ağır torpido",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Denizaltı Savunma",
+        "uretici": "Roketsan",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Test",
+        "gorev": "Denizaltı savunma torpidosu",
+        "son_gelisme": "Denizkurdu-2026'da hedefi vurdu (Tem 2026)",
+        "guncelleme_tarihi": "2026-07-22",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Roketsan Elmadağ (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[13]"
+        ],
+        "yerlilik_notu": "Yerli ağır torpido",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "missile",
+        "kume_id": "roketsan-elmadag",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.23,
+          39.92
+        ]
+      },
+      "properties": {
+        "id": "SYS-032",
+        "isim": "GÖKBORA",
+        "varyant": "Ramjet BVRAAM",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Görüş Ötesi Hava-Hava",
+        "uretici": "Roketsan",
+        "durum_kodu": 6,
+        "durum_etiketi": "Geliştirme",
+        "gorev": "Görüş ötesi hava-hava füzesi",
+        "son_gelisme": "İlk testler 2026 içinde; 2028 sonu hazır hedefi",
+        "guncelleme_tarihi": "2026-01-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Roketsan Elmadağ (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli BVRAAM hedefi",
+        "ihracat_notu": null,
+        "notlar": "185 km menzil ve ramjet performansı üretici beyanı; bağımsız doğrulama yok",
+        "mobil_ikon": "missile",
+        "kume_id": "roketsan-elmadag",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.24,
+          39.93
+        ]
+      },
+      "properties": {
+        "id": "SYS-033",
+        "isim": "TAYFUN",
+        "varyant": "Blok-2 / Blok-3",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Balistik Füze",
+        "uretici": "Roketsan",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Teslimat",
+        "gorev": "Balistik füze",
+        "son_gelisme": "Blok-2 envantere alındı (May 2026); Blok-3 seri üretim 2026'da başlıyor",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Roketsan Elmadağ (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Blok-2 ve Blok-3 aynı feature altında; menzil detayı kamuya açık değil",
+        "mobil_ikon": "missile",
+        "kume_id": "roketsan-elmadag",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.78,
+          39.98
+        ]
+      },
+      "properties": {
+        "id": "SYS-034",
+        "isim": "TOLUN",
+        "varyant": "Güdüm kiti",
+        "kategori": "Füze ve Mühimmat",
+        "alt_kategori": "Hassas Güdüm",
+        "uretici": "ASELSAN",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretim ve Teslimat",
+        "gorev": "Hassas güdüm",
+        "son_gelisme": "AKSUNGUR'dan ilk TOLUN-P atışı (Eki 2026); KIZILELMA'dan atış (Tem 2026)",
+        "guncelleme_tarihi": "2026-10-15",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli güdüm kiti",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "missile",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.77,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-035",
+        "isim": "MURAD",
+        "varyant": "AESA burun radarı",
+        "kategori": "Radar/Sensör/EH",
+        "alt_kategori": "Çok Fonksiyonlu AESA",
+        "uretici": "ASELSAN",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretimde",
+        "gorev": "Çok fonksiyonlu AESA radar",
+        "son_gelisme": "Seri üretime geçti; 2026'da envantere girecek (Şub 2026)",
+        "guncelleme_tarihi": "2026-02-10",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[33]"
+        ],
+        "yerlilik_notu": "Yerli GaN/AESA",
+        "ihracat_notu": null,
+        "notlar": "Menzil/tespit/angajman performansı kamuya açık değil",
+        "mobil_ikon": "radar",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.77,
+          39.98
+        ]
+      },
+      "properties": {
+        "id": "SYS-036",
+        "isim": "FULMAR 500A",
+        "varyant": "AESA gözetleme radarı",
+        "kategori": "Radar/Sensör/EH",
+        "alt_kategori": "Hava/Deniz Gözetleme",
+        "uretici": "ASELSAN",
+        "durum_kodu": 4,
+        "durum_etiketi": "Tanıtım/Test",
+        "gorev": "Hava/deniz gözetleme",
+        "son_gelisme": "SAHA 2026'da tanıtıldı; 600 km menzil iddiası (May 2026)",
+        "guncelleme_tarihi": "2026-05-05",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "600 km menzil iddiası bağımsız doğrulanmamış",
+        "mobil_ikon": "radar",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.78,
+          39.98
+        ]
+      },
+      "properties": {
+        "id": "SYS-037",
+        "isim": "ASELFLIR 600",
+        "varyant": "Elektro-optik",
+        "kategori": "Radar/Sensör/EH",
+        "alt_kategori": "Keşif/Hedefleme",
+        "uretici": "ASELSAN",
+        "durum_kodu": 3,
+        "durum_etiketi": "Envantere Giriş",
+        "gorev": "Keşif/hedefleme",
+        "son_gelisme": "Envantere giriş aşamasında (Şub 2026)",
+        "guncelleme_tarihi": "2026-02-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "radar",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.76,
+          39.97
+        ]
+      },
+      "properties": {
+        "id": "SYS-038",
+        "isim": "KORAL",
+        "varyant": "Kara EH sistemi",
+        "kategori": "Radar/Sensör/EH",
+        "alt_kategori": "Elektronik Destek/Taarruz",
+        "uretici": "ASELSAN",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Elektronik destek/taarruz",
+        "son_gelisme": "KORAL AD varyantı tanıtıldı (May 2026) — ayrı sistem",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "ASELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "KORAL AD (SYS-028) ile karıştırılmamalı",
+        "mobil_ikon": "radar",
+        "kume_id": "aselsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.78,
+          39.91
+        ]
+      },
+      "properties": {
+        "id": "SYS-039",
+        "isim": "ADVENT",
+        "varyant": "Savaş yönetim sistemi",
+        "kategori": "K2HM",
+        "alt_kategori": "Deniz Harekât Yönetimi",
+        "uretici": "HAVELSAN",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde ve Geliştirme",
+        "gorev": "Deniz harekât yönetimi",
+        "son_gelisme": "MİLDEN'e ADVENT MÜREN entegrasyon hedefi (Ağu 2026)",
+        "guncelleme_tarihi": "2026-08-21",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "HAVELSAN Ankara (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli savaş yönetim yazılımı",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "network",
+        "kume_id": "havelsan-ankara",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.3,
+          40.82
+        ]
+      },
+      "properties": {
+        "id": "SYS-040",
+        "isim": "TCG Anadolu–TB3 Milli Yazılım",
+        "varyant": "Entegre muharebe yönetimi",
+        "kategori": "K2HM",
+        "alt_kategori": "İnsanlı-İnsansız Müşterek",
+        "uretici": "TUSAŞ/Baykar",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test/Kalifikasyon",
+        "gorev": "İnsanlı-insansız müşterek çalışma",
+        "son_gelisme": "Milli yazılımla entegrasyon (Eyl 2026)",
+        "guncelleme_tarihi": "2026-09-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "konuslanma",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TCG Anadolu / Sedef Tuzla ilişkili (platform konumu çıkarımı; rapordan tesis koordinatı doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Milli yazılım entegrasyonu",
+        "ihracat_notu": null,
+        "notlar": "Yazılım/entegrasyon katmanı; fiziksel silah sistemi değil",
+        "mobil_ikon": "network",
+        "kume_id": "sedef-tuzla",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.65,
+          40.11
+        ]
+      },
+      "properties": {
+        "id": "SYS-041",
+        "isim": "GÖKTÜRK-3",
+        "varyant": "SAR uydu",
+        "kategori": "Uzay ve Uydu",
+        "alt_kategori": "Yer Gözlem SAR",
+        "uretici": "TUSAŞ",
+        "durum_kodu": 6,
+        "durum_etiketi": "Geliştirme",
+        "gorev": "Her hava koşulunda görüntüleme",
+        "son_gelisme": "Program IAC 2026'da öne çıktı",
+        "guncelleme_tarihi": "2026-01-01",
+        "guncellik": "Yakın dönem",
+        "guven_duzeyi": "C",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ Kahramankazan uzay programları (üretici çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Fırlatma tarihi/yer raporda net değil",
+        "mobil_ikon": "satellite",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "orta"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.65,
+          40.11
+        ]
+      },
+      "properties": {
+        "id": "SYS-042",
+        "isim": "HÜRSAT",
+        "varyant": "200–650 kg seri uydu ailesi",
+        "kategori": "Uzay ve Uydu",
+        "alt_kategori": "Yer Gözlem/Takım Uydu",
+        "uretici": "TUSAŞ/Roketsan",
+        "durum_kodu": 6,
+        "durum_etiketi": "Geliştirme",
+        "gorev": "Yer gözlem/takım uydu",
+        "son_gelisme": "HÜRSAT-2 sözleşmesi imzalandı (Eki 2026)",
+        "guncelleme_tarihi": "2026-10-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TUSAŞ/Roketsan program (Kahramankazan/Ankara çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[50]"
+        ],
+        "yerlilik_notu": "ŞİMŞEK-1 fırlatma aracı ile 2028–2029 planı rapor eğilimlerinde",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "satellite",
+        "kume_id": "tusas-kahramankazan",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.65,
+          41.15
+        ]
+      },
+      "properties": {
+        "id": "SYS-043",
+        "isim": "FERGANİ",
+        "varyant": "FGN-100-D3",
+        "kategori": "Uzay ve Uydu",
+        "alt_kategori": "Yer Gözlem",
+        "uretici": "Baykar",
+        "durum_kodu": 1,
+        "durum_etiketi": "Envanterde",
+        "gorev": "Yer gözlem",
+        "son_gelisme": "5. uydu uzaya fırlatıldı (Mar 2026)",
+        "guncelleme_tarihi": "2026-03-30",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "genel_merkez",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "Baykar Arnavutköy/İstanbul bölgesi (yaklaşık; rapordan tesis koordinatı doğrulanmadı — önceki koordinat düzeltildi)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": null,
+        "ihracat_notu": null,
+        "notlar": "Fırlatma konumu Türkiye dışı olabilir; marker üretici merkezi",
+        "mobil_ikon": "satellite",
+        "kume_id": "baykar-arnavutkoy",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.52,
+          39.78
+        ]
+      },
+      "properties": {
+        "id": "SYS-044",
+        "isim": "TEI-TF6000",
+        "varyant": "Turbofan",
+        "kategori": "Tahrik ve Motor",
+        "alt_kategori": "İnsansız Savaş Uçağı Motoru",
+        "uretici": "TEI",
+        "durum_kodu": 4,
+        "durum_etiketi": "Test ve Geliştirme",
+        "gorev": "İnsansız savaş uçağı motoru",
+        "son_gelisme": "Operasyonel testler tamamlandı; Baykar'a test teslimatı 2026 sonu/2027 başı hedefi",
+        "guncelleme_tarihi": "2026-10-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "B",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TEI Eskişehir (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [
+          "[35]",
+          "[16]"
+        ],
+        "yerlilik_notu": "Yerli turbofan; ~6000 lbf kuru itki (üretici)",
+        "ihracat_notu": null,
+        "notlar": "KAAN sınıfı için yeterli itki değil; uçuşa hazır platform entegrasyonu henüz doğrulanmadı",
+        "mobil_ikon": "engine",
+        "kume_id": "tei-eskisehir",
+        "oncelik_mobil": "yuksek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.52,
+          39.78
+        ]
+      },
+      "properties": {
+        "id": "SYS-045",
+        "isim": "TEI-PD170",
+        "varyant": "Dizel",
+        "kategori": "Tahrik ve Motor",
+        "alt_kategori": "İHA Motoru",
+        "uretici": "TEI",
+        "durum_kodu": 2,
+        "durum_etiketi": "Seri Üretimde",
+        "gorev": "İHA motoru",
+        "son_gelisme": "ANKA/AKSUNGUR için 100 motorluk anlaşma (May 2026)",
+        "guncelleme_tarihi": "2026-05-01",
+        "guncellik": "Güncel",
+        "guven_duzeyi": "A",
+        "konum_turu": "uretim_tesisi",
+        "konum_hassasiyeti": "ilce",
+        "konum_aciklama": "TEI Eskişehir (üretici merkezi çıkarımı; rapordan doğrulanmadı)",
+        "ana_konum": true,
+        "kaynaklar": [],
+        "yerlilik_notu": "Yerli İHA dizel motoru",
+        "ihracat_notu": null,
+        "notlar": null,
+        "mobil_ikon": "engine",
+        "kume_id": "tei-eskisehir",
+        "oncelik_mobil": "yuksek"
+      }
+    }
+  ]
+}

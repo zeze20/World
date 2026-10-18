@@ -1,0 +1,479 @@
+/* Mobile-first Türkiye Savunma Haritası */
+:root {
+  --bg: #0b1116;
+  --panel: #141c24;
+  --text: #e8eef4;
+  --muted: #9aa8b5;
+  --accent: #1f4e79;
+  --border: #243040;
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --topbar-h: 52px;
+  --touch: 44px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Top bar */
+.topbar {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--topbar-h);
+  padding: calc(8px + var(--safe-t)) 12px 8px;
+  padding-left: calc(12px + var(--safe-l));
+  padding-right: calc(12px + var(--safe-r));
+  background: linear-gradient(180deg, rgba(11, 17, 22, 0.92), rgba(11, 17, 22, 0.55));
+  backdrop-filter: blur(8px);
+}
+
+.title {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.icon-btn,
+.ctrl-btn,
+.btn {
+  min-width: var(--touch);
+  min-height: var(--touch);
+  border: 0;
+  border-radius: 12px;
+  background: rgba(20, 28, 36, 0.9);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 0 14px;
+}
+
+.btn.secondary {
+  background: #243040;
+}
+
+.filter-badge {
+  position: absolute;
+  top: calc(6px + var(--safe-t));
+  left: 36px;
+  background: #e67e22;
+  color: #111;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Map */
+.map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #0b1116;
+}
+
+.map-controls {
+  position: absolute;
+  z-index: 900;
+  right: calc(10px + var(--safe-r));
+  bottom: calc(88px + var(--safe-b));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ctrl-btn {
+  background: rgba(20, 28, 36, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Loading / offline */
+.loading,
+.offline-banner {
+  position: absolute;
+  z-index: 1100;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 28, 36, 0.95);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.loading {
+  top: calc(60px + var(--safe-t));
+}
+
+.offline-banner {
+  top: calc(60px + var(--safe-t));
+  background: #5c3d0a;
+  color: #ffe8b0;
+}
+
+/* Drawer (mobile filter) */
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.drawer {
+  position: absolute;
+  z-index: 1300;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 88vw);
+  background: var(--panel);
+  transform: translateX(-105%);
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--safe-t);
+  padding-bottom: var(--safe-b);
+  border-right: 1px solid var(--border);
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-head,
+.drawer-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawer-foot {
+  border-bottom: 0;
+  border-top: 1px solid var(--border);
+}
+
+.drawer-body {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 14px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-section {
+  margin-bottom: 16px;
+}
+
+.filter-section h3 {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  min-height: 40px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #1a2430;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.chip.active {
+  border-color: #4ea1ff;
+  background: #1a3350;
+}
+
+.chip .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Bottom sheet */
+.sheet {
+  position: absolute;
+  z-index: 1400;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 85dvh;
+  background: var(--panel);
+  border-radius: 16px 16px 0 0;
+  transform: translateY(110%);
+  transition: transform 0.28s ease;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+  padding-bottom: var(--safe-b);
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet.open {
+  transform: translateY(0);
+}
+
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: #3a4a5a;
+  margin: 10px auto 6px;
+  flex-shrink: 0;
+}
+
+.sheet-content {
+  overflow: auto;
+  padding: 8px 16px 20px;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+/* Popup content (shared) */
+.sg-popup {
+  font: 14px/1.45 var(--font);
+  color: var(--text);
+  max-width: 100%;
+}
+
+.sg-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.sg-var {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.sg-meta {
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+}
+
+.sg-row {
+  margin: 6px 0;
+}
+
+.sg-badge {
+  display: inline-block;
+  background: #243040;
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin: 2px 6px 2px 0;
+  font-size: 0.8rem;
+}
+
+.sg-guven {
+  background: #1a3350;
+}
+
+.sg-muted {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.sg-notes {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #3a2e12;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #ffe8b0;
+}
+
+.sg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sg-list li {
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+  min-height: var(--touch);
+  cursor: pointer;
+}
+
+.sg-list li:first-child {
+  border-top: 0;
+}
+
+.sg-list li:active {
+  background: #1a2430;
+}
+
+/* Cluster markers — larger touch targets */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background-clip: padding-box;
+}
+
+.marker-cluster div {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  line-height: 44px !important;
+  font-size: 14px !important;
+  font-weight: 700;
+}
+
+.leaflet-container {
+  font: inherit;
+  background: #0b1116;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(11, 17, 22, 0.75) !important;
+  color: #9aa8b5 !important;
+  max-width: 55vw;
+}
+
+.leaflet-control-attribution a {
+  color: #8ec5ff !important;
+}
+
+/* Hide default zoom on mobile — we use custom controls */
+.leaflet-control-zoom {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .sheet,
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Coarse pointer (touch) — larger targets */
+@media (pointer: coarse) {
+  .chip {
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+  .icon-btn,
+  .ctrl-btn {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+/* Desktop: sidebar instead of drawer overlay */
+@media (min-width: 900px) {
+  .topbar {
+    left: 320px;
+  }
+  .drawer {
+    transform: none;
+    width: 320px;
+    box-shadow: none;
+  }
+  .drawer-backdrop {
+    display: none !important;
+  }
+  #btn-filter,
+  #btn-drawer-close {
+    display: none;
+  }
+  .map {
+    left: 320px;
+  }
+  .map-controls {
+    bottom: calc(24px + var(--safe-b));
+  }
+  /* Desktop: sheet as floating card */
+  .sheet {
+    left: auto;
+    right: calc(16px + var(--safe-r));
+    bottom: calc(16px + var(--safe-b));
+    width: min(360px, 30vw);
+    max-height: 70vh;
+    border-radius: 12px;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sheet.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sheet-handle {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover,
+  .icon-btn:hover,
+  .ctrl-btn:hover,
+  .btn:hover {
+    filter: brightness(1.12);
+  }
+}

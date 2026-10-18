@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1f4e79" />
+  <meta name="description" content="Türkiye savunma sistemleri — kamuya açık envanter haritası" />
+  <link rel="manifest" href="./public/manifest.webmanifest" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./src/styles.css" />
+  <title>Türkiye Savunma Haritası</title>
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <button type="button" id="btn-filter" class="icon-btn" aria-label="Filtreleri aç" aria-controls="drawer" aria-expanded="false">☰</button>
+      <h1 class="title">Türkiye Savunma</h1>
+      <button type="button" id="btn-search" class="icon-btn" aria-label="Ara" hidden>🔍</button>
+      <span id="filter-badge" class="filter-badge" hidden>0</span>
+    </header>
+
+    <aside id="drawer" class="drawer" aria-hidden="true" role="dialog" aria-label="Filtre paneli">
+      <div class="drawer-head">
+        <strong>Filtreler</strong>
+        <button type="button" id="btn-drawer-close" class="icon-btn" aria-label="Kapat">✕</button>
+      </div>
+      <div id="filter-root" class="drawer-body"></div>
+      <div class="drawer-foot">
+        <button type="button" id="btn-clear-filters" class="btn secondary">Filtreleri temizle</button>
+      </div>
+    </aside>
+    <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+
+    <main id="map" class="map" role="application" aria-label="Türkiye savunma sistemleri haritası"></main>
+
+    <div class="map-controls" aria-label="Harita kontrolleri">
+      <button type="button" id="btn-zoom-in" class="ctrl-btn" aria-label="Yakınlaştır">+</button>
+      <button type="button" id="btn-zoom-out" class="ctrl-btn" aria-label="Uzaklaştır">−</button>
+      <button type="button" id="btn-home" class="ctrl-btn" aria-label="Türkiye'yi ortala">⌂</button>
+      <button type="button" id="btn-locate" class="ctrl-btn" aria-label="Konumum">📍</button>
+    </div>
+
+    <div id="loading" class="loading" aria-live="polite">Sistemler yükleniyor…</div>
+    <div id="offline-banner" class="offline-banner" hidden role="status">Bağlantı yok — son önbellek gösteriliyor</div>
+
+    <!-- Bottom sheet (mobile) / used as detail panel -->
+    <div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Sistem detayı">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div id="sheet-content" class="sheet-content"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script type="module" src="./src/map.js"></script>
+</body>
+</html>
