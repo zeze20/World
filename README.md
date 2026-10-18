@@ -68,3 +68,37 @@ Issue ve PR’lar memnuniyetle karşılanır. Büyük değişikliklerden önce l
 - Tüm veri lisanslarını hukuk uzmanıyla doğrulayın
 - Nominatim / OSM tile politikalarına uyun veya alternatif sağlayıcı kullanın
 - API anahtarlarını istemciye gömmeyin
+
+---
+
+## GitHub’a yükleme
+
+Bu klasör zaten `git` ile başlatılmış ve ilk commit atılmıştır (`main` dalı).
+
+1. GitHub’da **yeni boş repository** oluşturun (README / .gitignore eklemeyin).
+2. Yerel makinenizde:
+
+```bash
+cd aetherglobe   # bu proje klasörü
+git remote add origin https://github.com/KULLANICI_ADINIZ/aetherglobe.git
+git push -u origin main
+```
+
+SSH kullanıyorsanız:
+
+```bash
+git remote add origin git@github.com:KULLANICI_ADINIZ/aetherglobe.git
+git push -u origin main
+```
+
+## Çalıştırma (kendi bilgisayarınızda)
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+Tarayıcı: http://localhost:5173
+
+> Not: Sandbox ortamında npm symlink kısıtları nedeniyle bağımlılıklar burada kurulamadı. Kendi makinenizde `npm install` sorunsuz çalışır.
