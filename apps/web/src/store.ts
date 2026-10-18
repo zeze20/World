@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import type { Geodetic } from "../geo/index.js";
+import type { Geodetic } from "./geo/index.js";
+import { LAYER_REGISTRY } from "./layers/registry";
 
 export interface Bookmark {
   id: string;
@@ -22,6 +23,10 @@ interface AppState {
   language: "tr" | "en";
   showHelp: boolean;
   isFlying: boolean;
+  online: boolean;
+  showTelemetry: boolean;
+  layersEnabled: Record<string, boolean>;
+  errorMessage: string | null;
 
   setCameraPosition: (p: Geodetic | null) => void;
   addBookmark: (name: string, position: Geodetic) => void;
@@ -33,9 +38,15 @@ interface AppState {
   setLanguage: (l: "tr" | "en") => void;
   setShowHelp: (v: boolean) => void;
   setIsFlying: (v: boolean) => void;
+  setOnline: (v: boolean) => void;
+  setShowTelemetry: (v: boolean) => void;
+  toggleLayer: (id: string) => void;
+  setLayerEnabled: (id: string, enabled: boolean) => void;
+  setErrorMessage: (msg: string | null) => void;
 }
 
 const BOOKMARKS_KEY = "aetherglobe.bookmarks";
+const LAYERS_KEY = "aetherglobe.layers";
 
 function loadBookmarks(): Bookmark[] {
   try {
@@ -51,7 +62,31 @@ function saveBookmarks(list: Bookmark[]) {
   try {
     localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(list));
   } catch {
-    // quota or private mode – ignore
+    /* quota */
+  }
+}
+
+function defaultLayers(): Record<string, boolean> {
+  const map: Record<string, boolean> = {};
+  for (const l of LAYER_REGISTRY) map[l.id] = l.defaultEnabled;
+  return map;
+}
+
+function loadLayers(): Record<string, boolean> {
+  try {
+    const raw = localStorage.getItem(LAYERS_KEY);
+    if (!raw) return defaultLayers();
+    return { ...defaultLayers(), ...(JSON.parse(raw) as Record<string, boolean>) };
+  } catch {
+    return defaultLayers();
+  }
+}
+
+function saveLayers(map: Record<string, boolean>) {
+  try {
+    localStorage.setItem(LAYERS_KEY, JSON.stringify(map));
+  } catch {
+    /* ignore */
   }
 }
 
@@ -64,6 +99,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   language: "tr",
   showHelp: false,
   isFlying: false,
+  online: typeof navigator !== "undefined" ? navigator.onLine : true,
+  showTelemetry: false,
+  layersEnabled: loadLayers(),
+  errorMessage: null,
 
   setCameraPosition: (p) => set({ cameraPosition: p }),
 
@@ -101,10 +140,26 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ measurePoints: [], measureDistanceM: null, measureActive: false }),
 
   setMeasureDistance: (m) => set({ measureDistanceM: m }),
-
   setLanguage: (l) => set({ language: l }),
-
   setShowHelp: (v) => set({ showHelp: v }),
-
   setIsFlying: (v) => set({ isFlying: v }),
+  setOnline: (v) => set({ online: v }),
+  setShowTelemetry: (v) => set({ showTelemetry: v }),
+
+  toggleLayer: (id) => {
+    const next = {
+      ...get().layersEnabled,
+      [id]: !get().layersEnabled[id],
+    };
+    saveLayers(next);
+    set({ layersEnabled: next });
+  },
+
+  setLayerEnabled: (id, enabled) => {
+    const next = { ...get().layersEnabled, [id]: enabled };
+    saveLayers(next);
+    set({ layersEnabled: next });
+  },
+
+  setErrorMessage: (msg) => set({ errorMessage: msg }),
 }));

@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppStore } from "../store";
 import type { ViewerHandle } from "../cesium/Viewer";
-import { formatDistance } from "../../geo/index.js";
+import { formatDistance } from "../geo/index.js";
+import { LayerPanel } from "./LayerPanel";
+import { TelemetryPanel } from "./TelemetryPanel";
 import i18n from "../i18n";
 
 interface Props {
@@ -10,6 +13,7 @@ interface Props {
 
 export function Toolbar({ viewer }: Props) {
   const { t } = useTranslation();
+  const [showLayers, setShowLayers] = useState(false);
   const {
     cameraPosition,
     measureActive,
@@ -24,6 +28,8 @@ export function Toolbar({ viewer }: Props) {
     isFlying,
     bookmarks,
     removeBookmark,
+    showTelemetry,
+    setShowTelemetry,
   } = useAppStore();
 
   const toggleLang = () => {
@@ -43,7 +49,6 @@ export function Toolbar({ viewer }: Props) {
 
   return (
     <>
-      {/* Top-left: search is separate */}
       <div
         style={{
           position: "absolute",
@@ -57,7 +62,7 @@ export function Toolbar({ viewer }: Props) {
         }}
       >
         <div className="panel" style={{ padding: 8, display: "flex", gap: 6, flexWrap: "wrap" }}>
-          <button type="button" className="btn" onClick={onAddBookmark} title={t("addBookmark")}>
+          <button type="button" className="btn" onClick={onAddBookmark} data-testid="add-bookmark">
             📍 {t("addBookmark")}
           </button>
           <button
@@ -65,10 +70,20 @@ export function Toolbar({ viewer }: Props) {
             className={`btn ${measureActive ? "btn-primary" : ""}`}
             onClick={() => (measureActive ? clearMeasure() : setMeasureActive(true))}
             aria-pressed={measureActive}
+            data-testid="measure-toggle"
           >
             📏 {measureActive ? t("clearMeasure") : t("measureDistance")}
           </button>
-          <button type="button" className="btn" onClick={toggleLang}>
+          <button
+            type="button"
+            className={`btn ${showLayers ? "btn-primary" : ""}`}
+            onClick={() => setShowLayers((v) => !v)}
+            aria-expanded={showLayers}
+            data-testid="layers-toggle"
+          >
+            🗺 {t("layers")}
+          </button>
+          <button type="button" className="btn" onClick={toggleLang} data-testid="lang-toggle">
             {language === "tr" ? "EN" : "TR"}
           </button>
           <button
@@ -79,20 +94,30 @@ export function Toolbar({ viewer }: Props) {
           >
             ❓ {t("help")}
           </button>
+          <button
+            type="button"
+            className={`btn ${showTelemetry ? "btn-primary" : ""}`}
+            onClick={() => setShowTelemetry(!showTelemetry)}
+            data-testid="telemetry-toggle"
+          >
+            📊
+          </button>
           {isFlying && (
-            <button
-              type="button"
-              className="btn"
-              onClick={() => viewer?.cancelFlight()}
-            >
+            <button type="button" className="btn" onClick={() => viewer?.cancelFlight()}>
               ✕ {t("cancelFlight")}
             </button>
           )}
         </div>
 
+        {showLayers && <LayerPanel viewer={viewer} />}
+        {showTelemetry && <TelemetryPanel />}
+
         {measureDistanceM != null && (
-          <div className="panel" style={{ padding: "8px 12px", fontSize: 14 }}>
-            {t("distance")}: <strong>{formatDistance(measureDistanceM, language === "tr" ? "tr-TR" : "en-US")}</strong>
+          <div className="panel" style={{ padding: "8px 12px", fontSize: 14 }} data-testid="measure-result">
+            {t("distance")}:{" "}
+            <strong>
+              {formatDistance(measureDistanceM, language === "tr" ? "tr-TR" : "en-US")}
+            </strong>
           </div>
         )}
 
@@ -103,11 +128,18 @@ export function Toolbar({ viewer }: Props) {
         )}
 
         {bookmarks.length > 0 && (
-          <div className="panel" style={{ padding: 10, maxWidth: 280, maxHeight: 220, overflow: "auto" }}>
+          <div
+            className="panel"
+            style={{ padding: 10, maxWidth: 280, maxHeight: 220, overflow: "auto" }}
+            data-testid="bookmarks-list"
+          >
             <div style={{ fontWeight: 600, marginBottom: 6 }}>{t("bookmarks")}</div>
             <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
               {bookmarks.map((b) => (
-                <li key={b.id} style={{ display: "flex", gap: 6, marginBottom: 4, alignItems: "center" }}>
+                <li
+                  key={b.id}
+                  style={{ display: "flex", gap: 6, marginBottom: 4, alignItems: "center" }}
+                >
                   <button
                     type="button"
                     className="btn"
@@ -136,7 +168,6 @@ export function Toolbar({ viewer }: Props) {
         )}
       </div>
 
-      {/* Bottom coordinate bar */}
       <div
         className="panel"
         style={{
@@ -151,6 +182,7 @@ export function Toolbar({ viewer }: Props) {
           whiteSpace: "nowrap",
         }}
         aria-live="polite"
+        data-testid="coords-bar"
       >
         {cameraPosition ? (
           <>
@@ -165,7 +197,6 @@ export function Toolbar({ viewer }: Props) {
         )}
       </div>
 
-      {/* Attribution */}
       <div
         style={{
           position: "absolute",

@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import type { Geodetic } from "../../geo/index.js";
+import type { Geodetic } from "../geo/index.js";
 import type { ViewerHandle } from "../cesium/Viewer";
+import { cacheGet, cacheSet } from "../cache/tileCache";
+import { useAppStore } from "../store";
 
 interface SearchResult {
   displayName: string;
@@ -13,7 +15,6 @@ interface Props {
   viewer: ViewerHandle | null;
 }
 
-/** Parse "lat, lon" or "lat lon" coordinate strings */
 function parseCoordinates(q: string): Geodetic | null {
   const cleaned = q.trim().replace(/,/g, " ").replace(/\s+/g, " ");
   const parts = cleaned.split(" ");
@@ -21,7 +22,6 @@ function parseCoordinates(q: string): Geodetic | null {
   const a = parseFloat(parts[0]);
   const b = parseFloat(parts[1]);
   if (Number.isNaN(a) || Number.isNaN(b)) return null;
-  // Heuristic: if |a| > 90 then treat as lon,lat
   if (Math.abs(a) <= 90 && Math.abs(b) <= 180) {
     return { latitude: a, longitude: b, height: 2500 };
   }
@@ -31,12 +31,11 @@ function parseCoordinates(q: string): Geodetic | null {
   return null;
 }
 
-/**
- * Search via OpenStreetMap Nominatim (open data, usage policy applies).
- * No API key required for low-volume non-commercial use.
- * Production: rate-limit, cache, and consider a self-hosted or commercial geocoder.
- */
 async function searchNominatim(query: string): Promise<SearchResult[]> {
+  const cacheKey = `search:${query.toLowerCase()}`;
+  const cached = await cacheGet<SearchResult[]>(cacheKey);
+  if (cached) return cached;
+
   const url = new URL("https://nominatim.openstreetmap.org/search");
   url.searchParams.set("q", query);
   url.searchParams.set("format", "json");
@@ -46,7 +45,6 @@ async function searchNominatim(query: string): Promise<SearchResult[]> {
   const res = await fetch(url.toString(), {
     headers: {
       Accept: "application/json",
-      // Nominatim requires a valid User-Agent identifying the application
       "User-Agent": "AetherGlobe/0.1 (independent educational project)",
     },
   });
@@ -56,15 +54,18 @@ async function searchNominatim(query: string): Promise<SearchResult[]> {
     lat: string;
     lon: string;
   }>;
-  return data.map((d) => ({
+  const results = data.map((d) => ({
     displayName: d.display_name,
     lat: parseFloat(d.lat),
     lon: parseFloat(d.lon),
   }));
+  await cacheSet(cacheKey, results);
+  return results;
 }
 
 export function SearchBar({ viewer }: Props) {
   const { t } = useTranslation();
+  const setErrorMessage = useAppStore((s) => s.setErrorMessage);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
@@ -76,7 +77,6 @@ export function SearchBar({ viewer }: Props) {
     setError(null);
     setResults([]);
 
-    // Coordinate shortcut
     const coord = parseCoordinates(q);
     if (coord && viewer) {
       viewer.flyTo(coord);
@@ -89,18 +89,16 @@ export function SearchBar({ viewer }: Props) {
       setResults(list);
       if (list.length === 0) setError(t("noResults"));
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Search error");
+      const msg = e instanceof Error ? e.message : "Search error";
+      setError(msg);
+      setErrorMessage(msg);
     } finally {
       setLoading(false);
     }
-  }, [query, viewer, t]);
+  }, [query, viewer, t, setErrorMessage]);
 
   const flyToResult = (r: SearchResult) => {
-    viewer?.flyTo({
-      latitude: r.lat,
-      longitude: r.lon,
-      height: 2500,
-    });
+    viewer?.flyTo({ latitude: r.lat, longitude: r.lon, height: 2500 });
     setResults([]);
   };
 
@@ -118,6 +116,7 @@ export function SearchBar({ viewer }: Props) {
           onKeyDown={(e) => e.key === "Enter" && doSearch()}
           placeholder={t("searchPlaceholder")}
           autoComplete="off"
+          data-testid="search-input"
         />
         <button
           type="button"
@@ -125,6 +124,7 @@ export function SearchBar({ viewer }: Props) {
           onClick={doSearch}
           disabled={loading}
           aria-busy={loading}
+          data-testid="search-button"
         >
           {t("search")}
         </button>
@@ -143,6 +143,7 @@ export function SearchBar({ viewer }: Props) {
             maxHeight: 200,
             overflow: "auto",
           }}
+          data-testid="search-results"
         >
           {results.map((r, i) => (
             <li key={i}>

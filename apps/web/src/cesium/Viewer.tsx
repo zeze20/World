@@ -9,25 +9,37 @@ import {
   Color,
   HeightReference,
   Entity,
+  OpenStreetMapImageryProvider,
+  EllipsoidTerrainProvider,
+  GeoJsonDataSource,
+  defined,
+  RequestScheduler,
 } from "cesium";
-import { haversineDistance, formatDistance } from "../../geo/index.js";
-import type { Geodetic } from "../../geo/index.js";
+import { haversineDistance, formatDistance } from "../geo/index.js";
+import type { Geodetic } from "../geo/index.js";
 import { useAppStore } from "../store";
 
 export interface ViewerHandle {
   flyTo: (geo: Geodetic, duration?: number) => void;
   cancelFlight: () => void;
   getCameraGeodetic: () => Geodetic | null;
+  setTerrainEnabled: (enabled: boolean, useWorldTerrain?: boolean) => void;
+  setCountriesVisible: (visible: boolean) => void;
 }
 
 interface Props {
   onReady?: (handle: ViewerHandle) => void;
 }
 
+/** Simplified world countries GeoJSON (Natural Earth derived, public domain) – small sample for MVP */
+const COUNTRIES_GEOJSON_URL =
+  "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson";
+
 export function GlobeViewer({ onReady }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<CesiumViewer | null>(null);
   const measureEntities = useRef<Entity[]>([]);
+  const countriesDs = useRef<GeoJsonDataSource | null>(null);
 
   const setCameraPosition = useAppStore((s) => s.setCameraPosition);
   const measureActive = useAppStore((s) => s.measureActive);
@@ -35,9 +47,14 @@ export function GlobeViewer({ onReady }: Props) {
   const measurePoints = useAppStore((s) => s.measurePoints);
   const setMeasureDistance = useAppStore((s) => s.setMeasureDistance);
   const setIsFlying = useAppStore((s) => s.setIsFlying);
+  const setErrorMessage = useAppStore((s) => s.setErrorMessage);
+  const layersEnabled = useAppStore((s) => s.layersEnabled);
 
   useEffect(() => {
     if (!containerRef.current || viewerRef.current) return;
+
+    // Limit concurrent requests for controlled networking
+    RequestScheduler.maximumRequestsPerServer = 6;
 
     const viewer = new CesiumViewer(containerRef.current, {
       animation: false,
@@ -50,30 +67,27 @@ export function GlobeViewer({ onReady }: Props) {
       fullscreenButton: false,
       infoBox: false,
       selectionIndicator: false,
-      // OpenStreetMap / natural Earth style default imagery (no Cesium ion required)
-      // Cesium ships with a default Bing or can use OSM via UrlTemplateImageryProvider
-      // We keep default for MVP and document attribution.
-      terrain: undefined,
+      terrainProvider: new EllipsoidTerrainProvider(),
     });
 
-    // Prefer open imagery if available; otherwise keep Cesium default with clear attribution.
-    // For production replace with a verified open or licensed provider.
+    // OSM imagery (attribution required; respect tile usage policy)
     try {
-      // OpenStreetMap raster (fair use / tile usage policy applies – rate limit & attribution required)
-      const osm = new (window as any).Cesium.OpenStreetMapImageryProvider({
+      viewer.imageryLayers.removeAll();
+      const osm = new OpenStreetMapImageryProvider({
         url: "https://tile.openstreetmap.org/",
       });
-      viewer.imageryLayers.removeAll();
       viewer.imageryLayers.addImageryProvider(osm);
-    } catch {
-      // keep default
+    } catch (e) {
+      console.warn("OSM imagery failed", e);
+      setErrorMessage("Imagery layer could not be loaded");
     }
 
     viewer.scene.globe.enableLighting = false;
     viewer.scene.fog.enabled = true;
     viewer.scene.skyAtmosphere.show = true;
+    // Controlled memory: request render mode optional later
+    viewer.scene.requestRenderMode = false;
 
-    // Initial camera – looking at Earth from space
     viewer.camera.setView({
       destination: Cartesian3.fromDegrees(28.9784, 41.0082, 12_000_000),
     });
@@ -87,49 +101,104 @@ export function GlobeViewer({ onReady }: Props) {
         height: carto.height,
       });
     };
-
     viewer.camera.moveEnd.addEventListener(updateCameraPos);
     updateCameraPos();
 
-    // Click handler for measurement
+    // Keyboard navigation
+    const canvas = viewer.scene.canvas;
+    canvas.setAttribute("tabindex", "0");
+    canvas.setAttribute("aria-label", "AetherGlobe 3D globe – use arrow keys to pan, +/- to zoom");
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      const cam = viewer.camera;
+      const amount = e.shiftKey ? 0.5 : 0.15;
+      switch (e.key) {
+        case "ArrowLeft":
+          cam.rotateLeft(amount * 0.5);
+          e.preventDefault();
+          break;
+        case "ArrowRight":
+          cam.rotateRight(amount * 0.5);
+          e.preventDefault();
+          break;
+        case "ArrowUp":
+          cam.rotateUp(amount * 0.3);
+          e.preventDefault();
+          break;
+        case "ArrowDown":
+          cam.rotateDown(amount * 0.3);
+          e.preventDefault();
+          break;
+        case "+":
+        case "=":
+          cam.zoomIn(cam.positionCartographic.height * 0.15);
+          e.preventDefault();
+          break;
+        case "-":
+        case "_":
+          cam.zoomOut(cam.positionCartographic.height * 0.15);
+          e.preventDefault();
+          break;
+        case "r":
+        case "R":
+          cam.flyTo({
+            destination: Cartesian3.fromDegrees(28.9784, 41.0082, 12_000_000),
+            duration: 1.5,
+          });
+          e.preventDefault();
+          break;
+        default:
+          break;
+      }
+    };
+    canvas.addEventListener("keydown", onKeyDown);
+
+    // Measure click
     const handler = new ScreenSpaceEventHandler(viewer.scene.canvas);
     handler.setInputAction((movement: { position: { x: number; y: number } }) => {
       if (!useAppStore.getState().measureActive) return;
-      const cartesian = viewer.scene.pickPosition(movement.position);
-      if (!cartesian) {
-        // fallback ellipsoid pick
-        const ray = viewer.camera.getPickRay(movement.position);
-        if (!ray) return;
-        const hit = viewer.scene.globe.pick(ray, viewer.scene);
-        if (!hit) return;
-        const carto = Cartographic.fromCartesian(hit);
-        const geo: Geodetic = {
-          latitude: CesiumMath.toDegrees(carto.latitude),
-          longitude: CesiumMath.toDegrees(carto.longitude),
-          height: carto.height,
-        };
-        addMeasurePoint({ position: geo, cartesian: hit });
-        return;
-      }
-      const carto = Cartographic.fromCartesian(cartesian);
+      const ray = viewer.camera.getPickRay(movement.position);
+      if (!ray) return;
+      const hit = viewer.scene.globe.pick(ray, viewer.scene);
+      if (!defined(hit) || !hit) return;
+      const carto = Cartographic.fromCartesian(hit);
       const geo: Geodetic = {
         latitude: CesiumMath.toDegrees(carto.latitude),
         longitude: CesiumMath.toDegrees(carto.longitude),
         height: carto.height,
       };
-      addMeasurePoint({ position: geo, cartesian });
+      addMeasurePoint({ position: geo, cartesian: hit });
     }, ScreenSpaceEventType.LEFT_CLICK);
+
+    // Load countries vector (Natural Earth via geo-countries – public domain style data)
+    GeoJsonDataSource.load(COUNTRIES_GEOJSON_URL, {
+      stroke: Color.fromCssColorString("#38bdf8").withAlpha(0.7),
+      fill: Color.fromCssColorString("#38bdf8").withAlpha(0.08),
+      strokeWidth: 1.5,
+      clampToGround: true,
+    })
+      .then((ds) => {
+        countriesDs.current = ds;
+        viewer.dataSources.add(ds);
+        ds.show = useAppStore.getState().layersEnabled["countries"] !== false;
+      })
+      .catch(() => {
+        console.warn("Countries GeoJSON could not be loaded (offline or CORS)");
+      });
 
     const handle: ViewerHandle = {
       flyTo(geo, duration = 2.5) {
         setIsFlying(true);
+        const prefersReduced =
+          typeof window !== "undefined" &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         viewer.camera.flyTo({
           destination: Cartesian3.fromDegrees(
             geo.longitude,
             geo.latitude,
             Math.max(geo.height || 2500, 800)
           ),
-          duration,
+          duration: prefersReduced ? 0 : duration,
           complete: () => setIsFlying(false),
           cancel: () => setIsFlying(false),
         });
@@ -147,25 +216,64 @@ export function GlobeViewer({ onReady }: Props) {
           height: c.height,
         };
       },
+      setTerrainEnabled(enabled, useWorldTerrain = false) {
+        if (!enabled) {
+          viewer.terrainProvider = new EllipsoidTerrainProvider();
+          return;
+        }
+        if (useWorldTerrain) {
+          // Requires Cesium ion token in VITE_CESIUM_ION_TOKEN – optional
+          const token = (import.meta as any).env?.VITE_CESIUM_ION_TOKEN;
+          if (token) {
+            (window as any).Cesium.Ion.defaultAccessToken = token;
+            // Dynamic import pattern avoided; user enables via env
+            import("cesium").then((C) => {
+              if (C.createWorldTerrainAsync) {
+                C.createWorldTerrainAsync().then((tp) => {
+                  viewer.terrainProvider = tp;
+                });
+              }
+            });
+          } else {
+            console.info("World terrain needs VITE_CESIUM_ION_TOKEN – using ellipsoid");
+            viewer.terrainProvider = new EllipsoidTerrainProvider();
+          }
+        } else {
+          viewer.terrainProvider = new EllipsoidTerrainProvider();
+        }
+      },
+      setCountriesVisible(visible) {
+        if (countriesDs.current) countriesDs.current.show = visible;
+      },
     };
 
     viewerRef.current = viewer;
     onReady?.(handle);
 
     return () => {
+      canvas.removeEventListener("keydown", onKeyDown);
       handler.destroy();
       viewer.camera.moveEnd.removeEventListener(updateCameraPos);
       viewer.destroy();
       viewerRef.current = null;
     };
-  }, [onReady, setCameraPosition, addMeasurePoint, setIsFlying]);
+  }, [onReady, setCameraPosition, addMeasurePoint, setIsFlying, setErrorMessage]);
 
-  // Draw measure entities when points change
+  // React to layer toggles
+  useEffect(() => {
+    const handle = viewerRef.current;
+    if (!handle) return;
+    // countries
+    if (countriesDs.current) {
+      countriesDs.current.show = !!layersEnabled["countries"];
+    }
+  }, [layersEnabled]);
+
+  // Measure drawing
   useEffect(() => {
     const viewer = viewerRef.current;
     if (!viewer) return;
 
-    // clear previous
     for (const e of measureEntities.current) {
       viewer.entities.remove(e);
     }
@@ -193,8 +301,8 @@ export function GlobeViewer({ onReady }: Props) {
           fillColor: Color.WHITE,
           outlineColor: Color.BLACK,
           outlineWidth: 3,
-          style: 2, // FILL_AND_OUTLINE
-          pixelOffset: new (window as any).Cesium.Cartesian2(0, -20),
+          style: 2,
+          verticalOrigin: 1, // TOP
           heightReference: HeightReference.CLAMP_TO_GROUND,
         },
       });
@@ -204,6 +312,11 @@ export function GlobeViewer({ onReady }: Props) {
     if (pts.length === 2) {
       const dist = haversineDistance(pts[0].position, pts[1].position);
       setMeasureDistance(dist);
+      const mid = Cartesian3.midpoint(
+        Cartesian3.fromDegrees(pts[0].position.longitude, pts[0].position.latitude, 0),
+        Cartesian3.fromDegrees(pts[1].position.longitude, pts[1].position.latitude, 0),
+        new Cartesian3()
+      );
       const line = viewer.entities.add({
         polyline: {
           positions: [
@@ -222,6 +335,7 @@ export function GlobeViewer({ onReady }: Props) {
           material: Color.CYAN.withAlpha(0.85),
           clampToGround: true,
         },
+        position: mid,
         label: {
           text: formatDistance(dist),
           font: "16px sans-serif",
@@ -229,19 +343,6 @@ export function GlobeViewer({ onReady }: Props) {
           outlineColor: Color.BLACK,
           outlineWidth: 3,
           style: 2,
-          position: Cartesian3.midpoint(
-            Cartesian3.fromDegrees(
-              pts[0].position.longitude,
-              pts[0].position.latitude,
-              0
-            ),
-            Cartesian3.fromDegrees(
-              pts[1].position.longitude,
-              pts[1].position.latitude,
-              0
-            ),
-            new Cartesian3()
-          ),
         },
       });
       measureEntities.current.push(line);

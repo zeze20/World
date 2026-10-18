@@ -4,96 +4,33 @@
 
 > Bu proje Google Earth veya Google Maps’in kopyası değildir. Google verisi, markası veya arayüz kimliği kullanılmaz.
 
-## Özellikler (MVP 0.1)
+## MVP 0.1 özellikleri
 
 - Etkileşimli 3B dünya küresi (CesiumJS + WGS84)
-- Fare, klavye ve dokunmatik navigasyon
+- Fare, klavye (ok / +/- / R) ve dokunmatik navigasyon
 - Koordinat gösterimi
-- Yer / koordinat araması (OpenStreetMap Nominatim) + kamera uçuşu
-- Yer işaretleri (yerel depolama)
+- Yer / koordinat araması (Nominatim) + kamera uçuşu (hareket azaltma desteği)
+- Yer işaretleri (localStorage)
 - Geodezik mesafe ölçümü
+- **Katman yönetimi**: OSM imagery, elipsoid / opsiyonel world terrain, ülke sınırları (vektör)
+- **IndexedDB önbellek** (arama sonuçları, LRU)
+- **Performans telemetrisi** (FPS, long tasks)
+- Offline / hata banner’ları
 - Türkçe / İngilizce arayüz
-- Temel erişilebilirlik (klavye odağı, ARIA)
+- Temel erişilebilirlik (klavye, ARIA, focus)
+- Playwright E2E duman testleri
 - `@aetherglobe/geo-core` — test edilmiş koordinat dönüşümleri
 
 ## Gereksinimler
 
 - Node.js ≥ 20
-- pnpm ≥ 9
+- npm ≥ 10
 
-## Kurulum
-
-```bash
-git clone https://github.com/YOUR_USERNAME/aetherglobe.git
-cd aetherglobe
-pnpm install
-pnpm --filter @aetherglobe/geo-core build
-pnpm dev
-```
-
-Tarayıcıda: http://localhost:5173
-
-## Testler
+## Kurulum ve çalıştırma
 
 ```bash
-pnpm --filter @aetherglobe/geo-core test
-```
-
-## Lisans ve veri
-
-- Kod: Apache-2.0
-- Harita döşemeleri: OpenStreetMap — [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) ve atıf zorunludur
-- Geocoding: Nominatim — kullanım politikasına uyun; üretimde kendi instance veya ticari sağlayıcı önerilir
-- Ayrıntılar: `docs/data-licenses.md`
-
-## Mimari
-
-Bkz. `docs/architecture.md` ve `docs/adr/`.
-
-## Yol haritası
-
-1. ~~Repo iskeleti + geo-core + temel küre~~ (bu sürüm)
-2. Daha iyi imagery / terrain sağlayıcıları (lisans doğrulamalı)
-3. Vektör katmanlar ve etiketler
-4. Gelişmiş ölçüm ve kullanıcı verisi senkronizasyonu
-5. Performans bütçeleri ve erişilebilirlik denetimi
-
-## Katkı
-
-Issue ve PR’lar memnuniyetle karşılanır. Büyük değişikliklerden önce lütfen bir ADR açın.
-
-## Uyarı
-
-Üretim kullanımından önce:
-- Tüm veri lisanslarını hukuk uzmanıyla doğrulayın
-- Nominatim / OSM tile politikalarına uyun veya alternatif sağlayıcı kullanın
-- API anahtarlarını istemciye gömmeyin
-
----
-
-## GitHub’a yükleme
-
-Bu klasör zaten `git` ile başlatılmış ve ilk commit atılmıştır (`main` dalı).
-
-1. GitHub’da **yeni boş repository** oluşturun (README / .gitignore eklemeyin).
-2. Yerel makinenizde:
-
-```bash
-cd aetherglobe   # bu proje klasörü
-git remote add origin https://github.com/KULLANICI_ADINIZ/aetherglobe.git
-git push -u origin main
-```
-
-SSH kullanıyorsanız:
-
-```bash
-git remote add origin git@github.com:KULLANICI_ADINIZ/aetherglobe.git
-git push -u origin main
-```
-
-## Çalıştırma (kendi bilgisayarınızda)
-
-```bash
+git clone https://github.com/zeze20/World.git
+cd World
 cd apps/web
 npm install
 npm run dev
@@ -101,4 +38,48 @@ npm run dev
 
 Tarayıcı: http://localhost:5173
 
-> Not: Sandbox ortamında npm symlink kısıtları nedeniyle bağımlılıklar burada kurulamadı. Kendi makinenizde `npm install` sorunsuz çalışır.
+### Opsiyonel: Cesium World Terrain
+
+`.env` dosyasına:
+
+```
+VITE_CESIUM_ION_TOKEN=your_token_here
+```
+
+Ardından katman panelinden “Dünya arazisi (ion)” açın.
+
+### Testler
+
+```bash
+# geo-core birim testleri
+cd packages/geo-core && npm install && npm test
+
+# E2E (Playwright)
+cd apps/web
+npx playwright install chromium
+npm run test:e2e
+```
+
+## Lisans ve veri
+
+- Kod: **Apache-2.0**
+- Harita döşemeleri: OpenStreetMap — [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) ve atıf zorunlu
+- Geocoding: Nominatim — kullanım politikasına uyun
+- Ülke sınırları: geo-countries / Natural Earth (public domain tarzı)
+- Ayrıntılar: `docs/data-licenses.md`
+
+## Mimari
+
+Bkz. `docs/architecture.md` ve `docs/adr/`.
+
+## Yol haritası (sonraki)
+
+- Gerçek DEM / quantized-mesh arazi (lisanslı)
+- Stil tanımlı vektör döşemeler (MapLibre uyumlu)
+- Daha agresif tile istek planlayıcı ve disk önbelleği
+- Hesap / senkronizasyon
+- Gelişmiş ölçüm (alan, profil)
+
+## Uyarı
+
+Üretimden önce tüm veri lisanslarını hukuk uzmanıyla doğrulayın. OSM/Nominatim kotasına uyun veya kendi sağlayıcınızı kullanın.
